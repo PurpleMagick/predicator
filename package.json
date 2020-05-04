@@ -1,0 +1,24 @@
+{
+	"type": "module",
+	"name": "predicator",
+	"version": "0.0.1",
+	"description": "A toy project to test out creating a predicate library with TypeScript",
+	"main": "dist/index.js",
+	"scripts": {
+		"start": "tsc && node --es-module-specifier-resolution=node ./dist/index.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/PurpleMagick/predicator.git"
+	},
+	"author": "PurpleMagick",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/PurpleMagick/predicator/issues"
+	},
+	"homepage": "https://github.com/PurpleMagick/predicator#readme",
+	"devDependencies": {
+		"typescript": "^3.8.3"
+	}
+}
