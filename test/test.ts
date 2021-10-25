@@ -1,25 +1,25 @@
 
-import { expect } from 'chai';
-import { Predicate, PredicateBuilder } from '../src/predicator';
+import { expect, assert } from "chai";
+import { Predicate, PredicateBuilder } from "../src/predicator";
 
 describe("works???", function() {
-	let aPredicate: Predicate<number> = x => x > 41;
-	let bPredicate: Predicate<number> = x => x < 43;
+	const aPredicate: Predicate<number> = x => x > 41;
+	const bPredicate: Predicate<number> = x => x < 43;
 
 	let aBuilder: PredicateBuilder<number>;
 	let bBuilder: PredicateBuilder<number>;
 
-	let input = 42;
+	const input = 42;
 
 	beforeEach(function(){
 		aBuilder = new PredicateBuilder<number>(aPredicate);
 		bBuilder = new PredicateBuilder<number>(bPredicate);
 	});
 
-	describe('using builders', function () {
+	describe("using builders", function () {
 		it("A and B", function() {
 			const pred = aBuilder
-					.and(bBuilder);
+				.and(bBuilder);
 
 			const result = pred.apply(input);
 
@@ -28,7 +28,7 @@ describe("works???", function() {
 
 		it("B and A", function() {
 			const pred = bBuilder
-					.and(aBuilder);
+				.and(aBuilder);
 
 			const result = pred.apply(input);
 
@@ -37,7 +37,7 @@ describe("works???", function() {
 
 		it("A or B", function() {
 			const pred = aBuilder
-					.or (bBuilder);
+				.or (bBuilder);
 
 			const result = pred.apply(input);
 
@@ -46,18 +46,30 @@ describe("works???", function() {
 
 		it("B or A", function() {
 			const pred = bBuilder
-					.or (aBuilder);
+				.or (aBuilder);
 
 			const result = pred.apply(input);
 
 			expect(result).to.be.true;
 		});
 	});
+	function myFunc(apples: string | undefined): any {
+		if (apples === undefined) {
+			throw new Error("Error");
+		}
+	}
+	describe("TEST", function(){
+		it("throw an error if apples is undefined", function() {
+			const input: string = undefined;
+			const output = "Error";
+			assert.throws(() => myFunc(input), output);
+		});
+	});
 
-	describe('using predicates', function () {
+	describe("using predicates", function () {
 		it("A and B", function() {
 			const pred = aBuilder
-					.and(bPredicate);
+				.and(bPredicate);
 
 			const result = pred.apply(input);
 
@@ -66,7 +78,7 @@ describe("works???", function() {
 
 		it("B and A", function() {
 			const pred = bBuilder
-					.and(aPredicate);
+				.and(aPredicate);
 
 			const result = pred.apply(input);
 
@@ -75,7 +87,7 @@ describe("works???", function() {
 
 		it("A or B", function() {
 			const pred = aBuilder
-					.or (bPredicate);
+				.or (bPredicate);
 
 			const result = pred.apply(input);
 
@@ -84,7 +96,7 @@ describe("works???", function() {
 
 		it("B or A", function() {
 			const pred = bBuilder
-					.or (aPredicate);
+				.or (aPredicate);
 
 			const result = pred.apply(input);
 
@@ -92,9 +104,9 @@ describe("works???", function() {
 		});
 	});
 
-	describe('NOT', function () {
+	describe("NOT", function () {
 		it("not A", function() {
-			const pred = aBuilder.not()
+			const pred = aBuilder.not();
 
 			const result = pred.apply(input);
 
@@ -102,7 +114,7 @@ describe("works???", function() {
 		});
 
 		it("not B", function() {
-			const pred = bBuilder.not()
+			const pred = bBuilder.not();
 
 			const result = pred.apply(input);
 
